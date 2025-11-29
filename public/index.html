@@ -80,6 +80,47 @@
       display: grid;
       gap: 16px;
     }
+    .auth-card {
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.9);
+      display: grid;
+      gap: 10px;
+    }
+    .auth-card h2 {
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+    }
+    .auth-row {
+      display: grid;
+      gap: 6px;
+    }
+    .auth-controls {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .button-secondary {
+      background: #0f172a;
+      color: var(--text);
+      border: 1px solid var(--border);
+      box-shadow: none;
+    }
+    .button-secondary:hover {
+      box-shadow: none;
+      filter: brightness(1.05);
+    }
+    .button-secondary:active {
+      box-shadow: none;
+    }
+    .current-user {
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
     form {
       padding: 14px;
       border-radius: 14px;
@@ -92,6 +133,26 @@
     label {
       font-size: 13px;
       color: var(--muted);
+    }
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 14px;
+      border-radius: 10px;
+      border: 1px solid #111827;
+      background: #020617;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+    }
+    input::placeholder {
+      color: #4b5563;
+    }
+    input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent-soft), 0 0 0 1px #020617;
+      background: #020617;
     }
     textarea {
       width: 100%;
@@ -181,6 +242,45 @@
       font-size: 16px;
       letter-spacing: -0.02em;
     }
+    .history {
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.9);
+    }
+    .history h2 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+    }
+    .history-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 8px;
+    }
+    .history-item {
+      padding: 9px 10px;
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(30, 64, 175, 0.9);
+    }
+    .history-item h3 {
+      margin: 0 0 4px;
+      font-size: 13px;
+      color: #e5e7eb;
+    }
+    .history-item time {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .history-item ul {
+      margin: 6px 0 0;
+      padding-left: 16px;
+      color: #d1d5db;
+    }
     .goal-text {
       margin: 0 0 8px;
       font-size: 14px;
@@ -258,6 +358,34 @@
     </header>
 
     <main>
+      <section class="auth-card">
+        <h2>Account</h2>
+        <div class="auth-row">
+          <label for="auth-email">Email</label>
+          <input type="email" id="auth-email" placeholder="you@example.com" autocomplete="email">
+        </div>
+        <div class="auth-row">
+          <label for="auth-password">Password</label>
+          <input type="password" id="auth-password" placeholder="•••••••" autocomplete="current-password">
+        </div>
+        <div class="auth-controls">
+          <button type="button" id="btn-register">
+            <span class="icon">✨</span>
+            Register
+          </button>
+          <button type="button" id="btn-login">
+            <span class="icon">🔑</span>
+            Login
+          </button>
+          <button type="button" id="btn-logout" class="button-secondary" style="display:none;">
+            <span class="icon">🚪</span>
+            Logout
+          </button>
+        </div>
+        <div id="auth-status" class="status"></div>
+        <p class="current-user">Current user: <span id="current-user">Guest</span></p>
+      </section>
+
       <form id="goal-form">
         <label for="goal-input">Goal</label>
         <textarea id="goal-input" placeholder="Example: Learn React and build a personal portfolio website"></textarea>
@@ -280,10 +408,15 @@
         <p id="subgoal-label" class="subgoal-label" style="display:none;">Suggested sub-goals:</p>
         <ul id="subgoal-list" class="subgoal-list"></ul>
       </section>
+
+      <section class="history" id="history-section" style="display:none;">
+        <h2>History (last 50)</h2>
+        <p id="history-empty" class="empty-state">No history yet.</p>
+        <ul id="history-list" class="history-list"></ul>
+      </section>
     </main>
   </div>
 
   <script src="main.js"></script>
 </body>
 </html>
-
