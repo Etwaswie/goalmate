@@ -4,6 +4,7 @@ import * as API from './api.js';
 import * as Goals from './goals.js';
 import * as Habits from './habits.js';
 import * as Stats from './stats.js';
+import * as Profile from './profile.js';
 
 // ==================== СОСТОЯНИЕ ====================
 let currentView = 'ai-chat';
@@ -38,6 +39,11 @@ const PAGE_CONFIG = {
     title: 'Мои привычки',
     requiresAuth: true,
     onLoad: () => Habits.loadAndRenderHabitsList()
+  },
+  'profile': {
+    title: 'Профиль',
+    requiresAuth: true,
+    onLoad: () => Profile.loadProfile()
   }
 };
 
@@ -811,10 +817,7 @@ function showHelpModal() {
 }
 
 function showProfileModal() {
-  const user = Auth.getCurrentUser();
-  if (user) {
-    alert(`👤 ${user.name}\n📧 ${user.email}\n\nПрофиль в разработке...`);
-  }
+  showPage('profile');
 }
 
 function setTextContent(id, text) {
