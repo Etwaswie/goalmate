@@ -372,26 +372,6 @@ export async function decomposeGoalAI(goalText) {
   }
 }
 
-// ==================== AI INTERPRETATION ====================
-// ПРИМЕЧАНИЕ: Эта функция не используется в коде. 
-// Если нужна в будущем, используйте chatWithGiga() из main.js
-// или исправьте формат запроса (отправлять 'text' вместо 'message')
-
-// export async function interpretAI(text) {
-//   ensureAuthenticated();
-//
-//   const response = await makeApiRequest('/api/ai-chat', {
-//     method: 'POST',
-//     headers: { 'Content-Type': 'application/json' },
-//     body: JSON.stringify({
-//       text: text.trim()  // Исправлено: сервер ожидает 'text', а не 'message'
-//     })
-//   });
-//
-//   return response;
-// }
-
-
 // ==================== ЭКСПОРТ УТИЛИТ ====================
 
 export function clearCache() {
